@@ -1,12 +1,9 @@
 def stock_picker(array)
-    original_arr = array.map(&:clone)
-
-    array.delete(array.first) if array.max == array.first
-    array.delete(array.last) if array.min == array.last
-
-    days = array.slice(0, array.index(array.max) + 1)
-    day_to_buy = original_arr.index(days.min)
-    day_to_sell = original_arr.index(days.max)
+    selected = array.reject {|price| price == array.max && price == array.first || price == array.min && price == array.last}
+    
+    days = selected.slice(0, selected.index(selected.max) + 1)
+    day_to_buy = array.index(days.min)
+    day_to_sell = array.index(days.max)
 
     p [day_to_buy, day_to_sell]
 end
