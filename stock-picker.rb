@@ -1,11 +1,16 @@
 def stock_picker(array)
+    # Handle edge cases when the lowest day is the last day or the highest day is the first day
     selected = array.reject {|price| price == array.max && price == array.first || price == array.min && price == array.last}
     
+    # Slice the array upto and including max price
     days = selected.slice(0, selected.index(selected.max) + 1)
+
     day_to_buy = array.index(days.min)
     day_to_sell = array.index(days.max)
 
-    p [day_to_buy, day_to_sell]
+    pick = [day_to_buy, day_to_sell]
+
+    p pick
 end
 
     
